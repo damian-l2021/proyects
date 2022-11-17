@@ -1,0 +1,40 @@
+---
+import { links } from "./../js/links.js";
+import BurgerMenu from "../components/burgerMenu.astro";
+---
+
+<>
+  <div class="z-20 absolute w-full h-full menu-hidden transition-" id="menu">
+    <BurgerMenu active={true} />
+    <div
+      class="-z-10 absolute w-full h-full bg-slate-200 flex justify-center items-center"
+    >
+      <div class="flex flex-col h-1/3 justify-around text-center">
+        {
+          links.map((link) => {
+            return (
+              <a
+                href={link.link}
+                class="text-4xl text-zinc-800 hover:text-zinc-500 transition-colors"
+              >
+                {link.name}
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</>
+
+<style>
+  .menu-active {
+    left: 0;
+    transition: left .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .menu-hidden {
+    left: -1920px;
+    transition: left 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+</style>

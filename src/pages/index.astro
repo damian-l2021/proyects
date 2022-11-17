@@ -1,0 +1,45 @@
+---
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import CardContainer from "../components/cardContainer.astro";
+import Card from "../components/card.astro";
+import BurgerMenu from "../components/burgerMenu.astro";
+import { links } from "../js/links.js"
+import Menu from "./menu.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IWON Page</title>
+  </head>
+  <body>
+    <Header links={links} />
+    <BurgerMenu active={false}/>
+    <Menu/>
+    <div class="w-full h-auto px-96 py-48 bg-zinc-800 max-md:px-4">
+      <h1 class="text-4xl text-zinc-100 max-sm:text-2xl">
+        Bienvenidos Artistas A IWON Services.
+      </h1>
+      <CardContainer>
+        <Card
+          imgSource="/public/img-rap.jpg"
+          cardTitle="Producciones"
+          link="#"
+        />
+        <Card
+          imgSource="/public/img-rap-2.jpg"
+          cardTitle="Entrevistas"
+          link="#"
+        />
+        <Card imgSource="/public/img-rap-3.jpg" cardTitle="Sorteo" link="/formulario" />
+        <Card imgSource="/public/img-rap-4.jpg" cardTitle="Academia" link="#" />
+      </CardContainer>
+      <div></div>
+    </div>
+    <Footer />
+  </body>
+</html>

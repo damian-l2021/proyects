@@ -1,0 +1,53 @@
+---
+import BurgerMenu from "./burgerMenu.astro";
+const { links } = Astro.props;
+---
+
+<nav
+  class="absolute top-0 w-full bg-zinc-900
+   p-4 flex justify-between items-center shadow-md shadow-zinc-900"
+>
+  <div class="flex flex-col text-center bg-zinc-700 p-2 ml-96 max-xl:ml-0">
+    <a href="/">
+      <h1 class="text-2xl text-zinc-100 p-0">IWON</h1>
+      <p class="text-md tracking-widest text-zinc-100 p-0">Prods</p>
+    </a>
+  </div>
+  <ul class="flex gap-6 items-center max-xl:hidden px-96">
+    {
+      links.map((el) => {
+        return (
+          <li>
+            <a
+              href={el.link}
+              class="text-zinc-100 text-2xl font-light tracking-normal relative py-2"
+            >
+              {el.name}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  li a::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: -20px;
+    width: 20px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 1rem;
+    opacity: 0;
+    transition: none;
+  }
+
+  li a:hover::after {
+    left: calc(50% - 10px);
+    opacity: 1;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+</style>

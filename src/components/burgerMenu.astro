@@ -1,0 +1,82 @@
+---
+const { active } = Astro.props;
+---
+
+{
+  function burgerMenu() {
+    let display = undefined;
+    if (!active) {
+      display = (
+        <div class="cursor-pointer flex flex-col justify-around items-center p-2 absolute right-8 top-7 w-12 h-12 xl:hidden">
+          <div id="burger-menu-hidden" class="absolute w-full h-full z-10" />
+          <div class="stick bg-slate-100" />
+          <div class="stick bg-slate-100" />
+          <div class="stick bg-slate-100" />
+        </div>
+      );
+    } else if (active) {
+      display = (
+        <div class="cursor-pointer flex flex-col justify-center items-center p-2 absolute right-8 top-7 w-12 h-12">
+          <div id="burger-menu-active" class="absolute w-full h-full z-50" />
+          <div class="stick stick-active-45 bg-zinc-800 absolute" />
+          <div class="stick stick-active--45 bg-zinc-800 absolute" />
+        </div>
+      );
+    }
+
+    return display;
+  }
+}
+
+<script>
+  const $burgerHidden = document.getElementById("burger-menu-hidden");
+  const $burgerActive = document.getElementById("burger-menu-active");
+  const $menu = document.getElementById("menu");
+
+  document.addEventListener("click", (e) => {
+    if (e.target === $burgerHidden || e.target === $burgerActive) {
+      $menu.classList.toggle("menu-active");
+      $menu.classList.toggle("menu-hidden");
+    }
+  });
+</script>
+
+<style>
+  .stick {
+    width: 90%;
+    height: 5px;
+    border-radius: 1rem;
+  }
+
+  .active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+  }
+
+  .stick-active-45 {
+    transform: rotate(45deg);
+  }
+
+  .stick-active--45 {
+    transform: rotate(-45deg);
+  }
+
+  .menu-active {
+    left: 0;
+    z-index: 1000;
+  }
+
+  .menu-hidden {
+    left: -1920px;
+  }
+
+  .visible {
+    display: inline-block;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>

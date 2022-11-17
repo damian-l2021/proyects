@@ -1,0 +1,27 @@
+---
+const { imgSource, cardTitle, link } = Astro.props;
+const urlImg = "url(" + imgSource + ")";
+---
+<a href={link} class="transition__slow hover:scale-110">
+    <div class="relative overflow-hidden w-72 h-72 rounded-md shadow-md shadow-zinc-900">
+        <img src={imgSource} alt="img" class="absolute w-96 -z-10 scale-[2]">
+        <div class="absolute w-full h-full bg-gradient-to-b from-transparent to-zinc-900"></div>
+        <div class="absolute bottom-10 right-0">
+            <h1 class="text-right font-thin text-3xl text-zinc-800
+             px-4 py-2 w-72 bg-gradient-to-l from-slate-50 to-slate-300 z-10">{ cardTitle }</h1>
+        </div>
+    </div>
+</a>
+
+<style define:vars={{urlImg}}>
+
+    .basis__200
+    {
+        flex-basis: 1 1 200px;
+    }
+
+    .transition__slow
+    {
+        transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+</style>
